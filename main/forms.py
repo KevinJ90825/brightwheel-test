@@ -1,7 +1,19 @@
 
 from django import forms
+from django.conf import settings
 
 class EmailForm(forms.Form):
+
+    CLIENT_CHOICES = [
+        (settings.MAIL_MAILGUN, 'Mailgun'),
+        (settings.MAIL_SENDGRID, 'Sendgrid'),
+    ]
+
+    mail_client = forms.ChoiceField(
+        label="Email Service Provider",
+        choices=CLIENT_CHOICES,
+        initial=settings.MAIL_ACTIVE
+    )
 
     from_name = forms.CharField(
         label="From Name",
