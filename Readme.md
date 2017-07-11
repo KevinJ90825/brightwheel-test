@@ -8,14 +8,13 @@ This project uses Python 2.7 and Django to provide an interface to Mailgun and S
 
 The project is hosted on Heroku's free plan which has a constraint where the project will go to "sleep" after no use over 15 
 minutes. This just means that the first time you make a request to the URL, it may take longer to load than usual while
-the project "wakes up". It is recommended to go to the main site before attempting any manual post requests.
+the project "wakes up". It is recommended to **go to the main site before attempting any manual post requests**.
 
-###Links
-Project description can be found at: https://d2gn4xht817m0g.cloudfront.net/conversation_message_attachment/i/199260-a264b25209b4ca6a860dd5cc844bd748-original?1499272678
+### Links
 
-The main site is live at: https://brightwheel-test.herokuapp.com/
-
-The endpoint can be accessed at: https://brightwheel-test.herokuapp.com/email/
+* [Project Description](https://d2gn4xht817m0g.cloudfront.net/conversation_message_attachment/i/199260-a264b25209b4ca6a860dd5cc844bd748-original?1499272678)
+* [Main Site](https://brightwheel-test.herokuapp.com/)
+* [Endpoint](https://brightwheel-test.herokuapp.com/email/) (POST only)
 
 ## Installation
 
