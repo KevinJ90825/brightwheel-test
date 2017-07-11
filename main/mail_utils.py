@@ -1,3 +1,5 @@
+import json
+
 import requests
 from django.conf import settings
 from bs4 import BeautifulSoup
@@ -52,7 +54,7 @@ class MailSender(object):
         response = requests.post(
             self.SENDGRID_API_ENDPOINT,
             headers=headers,
-            data=formatted_data
+            data=json.dumps(formatted_data)
         )
         return response.status_code
 
