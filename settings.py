@@ -32,8 +32,14 @@ MAILGUN_API_KEY = "key-8288688d4509d0cc66b7982523322edb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+SECURE_SSL_REDIRECT = True
 
-ALLOWED_HOSTS = []
+HEROKU_APP_NAME = 'brightwheel-test'
+
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    '{}.herokuapp.com'.format(HEROKU_APP_NAME)
+]
 
 
 # Application definition
