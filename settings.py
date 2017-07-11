@@ -34,6 +34,9 @@ MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "LOCAL_TEST_KEY")
 
 DEBUG = os.environ.get('DEBUG', True)
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 HEROKU_APP_NAME = 'brightwheel-test'
 
 ALLOWED_HOSTS = [
