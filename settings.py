@@ -34,7 +34,8 @@ MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "key-8288688d4509d0cc66b7982
 
 DEBUG = os.environ.get('DEBUG', True)
 
-if not DEBUG:
+if not DEBUG or DEBUG == 'False':
+    DEBUG = False
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
