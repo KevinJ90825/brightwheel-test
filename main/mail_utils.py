@@ -36,9 +36,8 @@ class MailSender(object):
 
         response = requests.post(
             self.MAILGUN_API_ENDPOINT,
-            auth=('api', settings.MAILGUN_API_KEY), 
+            auth=('api', settings.MAILGUN_API_KEY),
             data=formatted_data,
-            headers={'Content-Type': 'multipart/form-data'}
         )
 
         return response.status_code
