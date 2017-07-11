@@ -9,7 +9,7 @@ from requests.auth import HTTPBasicAuth
 class MailSender(object):
 
     SENDGRID_API_ENDPOINT = "https://api.sendgrid.com/v3/mail/send"
-    MAILGUN_API_ENDPOINT = "https://api.mailgun.net/v3"
+    MAILGUN_API_ENDPOINT = "https://api.mailgun.net/v3/prbounty.co/messages"
 
     def send_mail_request(self, msg_data, mail_service=None):
         if not mail_service:
