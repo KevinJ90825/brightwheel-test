@@ -31,8 +31,8 @@ SENDGRID_API_KEY = "SG.ArB-O6IjTteHNiwDS4B2zw.ExxYMldNqVeDi47KC9DUnRS2a_n0I-8SrP
 MAILGUN_API_KEY = "key-8288688d4509d0cc66b7982523322edb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-SECURE_SSL_REDIRECT = True
+
+DEBUG = os.environ.get('DEBUG', True)
 
 HEROKU_APP_NAME = 'brightwheel-test'
 
