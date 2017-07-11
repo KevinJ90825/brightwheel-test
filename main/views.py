@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+from __future__ import unicode_literals, absolute_import
 
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -9,8 +9,8 @@ from django.conf import settings
 # Create your views here.
 from django.views.decorators.http import require_POST
 
-from brightwheel.main.forms import EmailForm
-from brightwheel.main.mail_utils import MailSender
+from main.forms import EmailForm
+from main.mail_utils import MailSender
 
 
 @require_POST
