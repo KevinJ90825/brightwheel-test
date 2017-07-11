@@ -22,11 +22,9 @@ class MailSender(object):
             return self.send_mailgun_request(msg_data)
         else:
             return self.send_sendgrid_request(msg_data)
-        return 0
 
 
     def send_mailgun_request(self, msg_data):
-        auth = HTTPBasicAuth("api:{}".format(settings.MAILGUN_API_KEY), "")
         formatted_data = {
             'from': '{} <{}>'.format(msg_data['from_name'], msg_data['from_email']),
             'to': '{} <{}>'.format(msg_data['to_name'], msg_data['to_email']),
@@ -40,7 +38,7 @@ class MailSender(object):
             data=formatted_data,
         )
 
-        return response.status_code
+        return response.ok
 
 
     def send_sendgrid_request(self, msg_data):
@@ -76,5 +74,5 @@ class MailSender(object):
             headers=headers,
             data=json.dumps(formatted_data)
         )
-        return response.status_code
+        return response.ok
 

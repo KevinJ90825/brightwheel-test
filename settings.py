@@ -28,14 +28,15 @@ MAIL_SENDGRID = 2
 MAIL_ACTIVE = os.environ.get("MAIL_ACTIVE", MAIL_MAILGUN)
 
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "LOCAL_TEST_KEY")
-MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "LOCAL_TEST_KEY")
+MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "key-8288688d4509d0cc66b7982523322edb")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = os.environ.get('DEBUG', True)
 
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 HEROKU_APP_NAME = 'brightwheel-test'
 

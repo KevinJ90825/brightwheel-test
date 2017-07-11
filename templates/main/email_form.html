@@ -13,7 +13,14 @@
     <body>
         <div class="container">
             <h1>Welcome to Brightwheel Interview Test! <p class="small">Author: Kevin Johnson</p></h1>
-            <p class="small">Response code: {{response_code}}</p>
+
+            {% if mail_sent_to %}
+                <div class="alert alert-success">
+                    <b>Success!</b>
+                    <p>You've successfully sent an email to {{mail_sent_to}}</p>
+                </div>
+            {% endif %}
+
 
             <form class="form" action="#" method="post">
                 {% csrf_token %}
