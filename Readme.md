@@ -37,7 +37,7 @@ commands:
 You should then be able to access the service by making a post request to `127.0.0.1:8000/email/` with the appropriate 
 data.
 
-## Libraries & Frameworks
+## Libraries and Frameworks
 
 ### Django
 Django is the main framework the website is running on. Django is a great Python web development framework that is very 
@@ -53,3 +53,23 @@ and Sendgrid Web APIs.
 ### Waitress
 Waitress is the production ready server we use. Heroku actually recommends you use Gunicorn here but
 Gunicorn isn't recommended for public facing servers.
+
+## Tradeoffs and Improvements
+
+1. One of the biggest problems I see with this is that it is synchronous. Every request sent to the endpoint must wait
+for another request to be sent to the provider. Ideally the endpoint would add the message to a Queue immediately and with
+another worker iterate through the queue and send messages. This could be done with a simple CRON job, or the Heroku 
+Scheduler Plugin since the site is already hosted on that.
+
+2. Since these are tied to my own accounts on Sendgrid and Mailgun, I don't want a random person taking advantage and
+sending thousands of emails on my behalf. Two ways to remedy that would be by adding authentication and rate limiting.
+If the user has to sign in before use, I can remove access from any offending users. To do this I'd likely use the
+[Django Rest Framework](http://www.django-rest-framework.org/). 
+
+3. Depending on usage it may be useful to add the possibility of bulk sending. This would be great for users
+with a high volume of messages. Sendgrid allows up to 1000 recipients on each email.
+
+4. Final note is that emails from Mailgun seem to end up in the Spam folder usually while Sendgrid makes it through.
+This may be because Mailgun has you specify your own domain to send from while Sendgrid uses its own.
+
+
