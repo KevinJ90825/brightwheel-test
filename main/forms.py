@@ -23,7 +23,7 @@ class EmailForm(forms.Form):
 
     from_email = forms.EmailField(
         label="From Email",
-        initial="kevin@homeward.io",
+        initial="kevin@prbounty.co",
         widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
 
