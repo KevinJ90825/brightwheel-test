@@ -18,7 +18,7 @@ class MailSender(object):
         msg_data['subject'] = BeautifulSoup(msg_data['subject'], 'html.parser').get_text()
         msg_data['body'] = BeautifulSoup(msg_data['body'], 'html.parser').get_text()
 
-        if int(mail_service) == settings.MAIL_MAILGUN:
+        if mail_service == settings.MAIL_MAILGUN:
             return self.send_mailgun_request(msg_data)
         else:
             return self.send_sendgrid_request(msg_data)

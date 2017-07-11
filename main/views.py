@@ -25,7 +25,8 @@ def index(request):
         form = EmailForm(request.POST)
         if form.is_valid():
             sender = MailSender()
-            response_code = sender.send_mail_request(form.cleaned_data)
+            response_code = sender.send_mail_request(
+                form.cleaned_data, mail_service=int(form.cleaned_data['mail_client']))
 
     context = {
         'form': EmailForm(),
