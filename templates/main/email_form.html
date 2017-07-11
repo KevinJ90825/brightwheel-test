@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <meta name="description" content="Brightwheel">
+        <meta name="author" content="">
+        <title>Brightwheel Test</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Welcome to Brightwheel Interview Test! <p class="small">Author: Kevin Johnson</p></h1>
+            <p class="small">Email client: {{send_client}}</p>
+            <p class="small">Response code: {{response_code}}</p>
+
+            <form class="form" action="#" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label" id="{{form.to_email.id_for_label}}">{{form.to_email.label}}</label>
+                        {{form.to_email}}
+                    </div>
+                    <div class="col-md-9">
+                        <label class="control-label" id="{{form.to_name.id_for_label}}">{{form.to_name.label}}</label>
+                        {{form.to_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label" id="{{form.from_email.id_for_label}}">{{form.from_email.label}}</label>
+                        {{form.from_email}}
+                    </div>
+                    <div class="col-md-9">
+                        <label class="control-label" id="{{form.from_name.id_for_label}}">{{form.from_name.label}}</label>
+                        {{form.from_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label" id="{{form.subject.id_for_label}}">{{form.subject.label}}</label>
+                        {{form.subject}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="control-label" id="{{form.body.id_for_label}}">{{form.body.label}}</label>
+                        {{form.body}}
+                    </div>
+                </div>
+                <button class="btn btn-primary pull-right" type="submit" style="margin-top: 15px;">Send</button>
+            </form>
+        </div>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+    </body>
+</html>
