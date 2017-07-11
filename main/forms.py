@@ -2,6 +2,16 @@
 from django import forms
 from django.conf import settings
 
+from bs4 import BeautifulSoup
+
+class HtmlTextField(forms.CharField):
+
+    def to_python(self, value):
+        if not value:
+            return None
+        return BeautifulSoup(value, 'html.parser').get_text()
+
+
 class EmailForm(forms.Form):
 
     CLIENT_CHOICES = [
@@ -35,12 +45,12 @@ class EmailForm(forms.Form):
         widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
 
-    subject = forms.CharField(
+    subject = HtmlTextField(
         label="Subject",
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
 
-    body = forms.CharField(
+    body = HtmlTextField(
         label="Body",
         widget=forms.Textarea(attrs={'class': 'form-control'})
     )

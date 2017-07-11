@@ -2,8 +2,6 @@ import json
 
 import requests
 from django.conf import settings
-from bs4 import BeautifulSoup
-from requests.auth import HTTPBasicAuth
 
 
 class MailSender(object):
@@ -14,9 +12,6 @@ class MailSender(object):
     def send_mail_request(self, msg_data, mail_service=None):
         if not mail_service:
             mail_service = settings.MAIL_ACTIVE
-
-        msg_data['subject'] = BeautifulSoup(msg_data['subject'], 'html.parser').get_text()
-        msg_data['body'] = BeautifulSoup(msg_data['body'], 'html.parser').get_text()
 
         if mail_service == settings.MAIL_MAILGUN:
             return self.send_mailgun_request(msg_data)

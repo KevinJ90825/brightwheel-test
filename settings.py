@@ -42,6 +42,7 @@ HEROKU_APP_NAME = 'brightwheel-test'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost',
     '{}.herokuapp.com'.format(HEROKU_APP_NAME)
 ]
 
