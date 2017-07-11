@@ -21,5 +21,6 @@ from main import views as main_views
 urlpatterns = [
     url(r'^admin/$', admin.site.urls),
     url(r'^email/$', main_views.email_request, name='email_request'),
-    url(r'^$', main_views.index, name='main_page')
+    url(r'^$', main_views.index, name='main_page'),
+    url(r'^/$', main_views.index, name='main_page')
 ]
