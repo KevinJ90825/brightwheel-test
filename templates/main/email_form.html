@@ -7,6 +7,11 @@
         <meta name="description" content="Brightwheel">
         <meta name="author" content="">
         <title>Brightwheel Test</title>
+        <style>
+            .errorlist li {
+                color: #a94442;
+            }
+        </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
@@ -25,35 +30,41 @@
             <form class="form" action="#" method="post">
                 {% csrf_token %}
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group {% if form.to_email.errors %}has-error{% endif %} col-md-3">
                         <label class="control-label" id="{{form.to_email.id_for_label}}">{{form.to_email.label}}</label>
                         {{form.to_email}}
+                        {{form.to_email.errors }}
                     </div>
-                    <div class="col-md-9">
+                    <div class="form-group {% if form.to_name.errors %}has-error{% endif %} col-md-9">
                         <label class="control-label" id="{{form.to_name.id_for_label}}">{{form.to_name.label}}</label>
                         {{form.to_name}}
+                        {{form.to_name.errors }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="form-group {% if form.from_email.errors %}has-error{% endif %} col-md-3">
                         <label class="control-label" id="{{form.from_email.id_for_label}}">{{form.from_email.label}}</label>
                         {{form.from_email}}
+                        {{form.from_email.errors }}
                     </div>
-                    <div class="col-md-9">
+                    <div class="form-group {% if form.from_name.errors %}has-error{% endif %} col-md-9">
                         <label class="control-label" id="{{form.from_name.id_for_label}}">{{form.from_name.label}}</label>
                         {{form.from_name}}
+                        {{form.from_name.errors }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="form-group {% if form.subject.errors %}has-error{% endif %} col-md-12">
                         <label class="control-label" id="{{form.subject.id_for_label}}">{{form.subject.label}}</label>
                         {{form.subject}}
+                        {{form.subject.errors }}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="form-group {% if form.body.errors %}has-error{% endif %} col-md-12">
                         <label class="control-label" id="{{form.body.id_for_label}}">{{form.body.label}}</label>
                         {{form.body}}
+                        {{form.body.errors }}
                     </div>
                 </div>
                 <div class="row" style="margin-top: 15px;">

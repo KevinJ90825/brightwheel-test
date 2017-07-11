@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.conf import settings
 
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from main.forms import EmailForm
@@ -14,10 +15,19 @@ from main.mail_utils import MailSender
 
 
 @require_POST
+@csrf_exempt
 def email_request(request):
-    sender = MailSender()
-    sender.send_mail_request(request.POST)
-    x=3
+    form = EmailForm(request.POST)
+
+    mail_success = False
+    status_code = 400
+    if form.is_valid():
+        sender = MailSender()
+        mail_success = sender.send_mail_request(form.cleaned_data)
+        if mail_success:
+            status_code = 200
+
+    return JsonResponse({"success": mail_success}, status=status_code)
 
 def index(request):
     response_code = -1

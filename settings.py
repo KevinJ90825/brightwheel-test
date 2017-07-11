@@ -25,10 +25,10 @@ SECRET_KEY = 'mvv6^i(p$89$e%x+ru@j(2jp58_9f7bb9p2woaq^@6@#s_s_yx'
 MAIL_MAILGUN = 1
 MAIL_SENDGRID = 2
 
-MAIL_ACTIVE = os.environ.get("MAIL_ACTIVE", MAIL_MAILGUN)
+MAIL_ACTIVE = os.environ.get("MAIL_ACTIVE", MAIL_SENDGRID)
 
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "LOCAL_TEST_KEY")
-MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "key-8288688d4509d0cc66b7982523322edb")
+MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "LOCAL_TEST_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -51,12 +51,12 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_extensions"
 ]
 
 MIDDLEWARE = [
