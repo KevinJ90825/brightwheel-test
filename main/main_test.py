@@ -21,6 +21,7 @@ def test_api_endpoint(settings, client):
     ]
 
     with requests_mock.Mocker() as mock:
+        # Mock the email provider endpoints so requests aren't actually sent.
         mock.post(settings.MAILGUN_API_ENDPOINT, status_code=200, text=str(settings.MAIL_MAILGUN))
         mock.post(settings.SENDGRID_API_ENDPOINT, status_code=200, text=str(settings.MAIL_SENDGRID))
 
@@ -47,6 +48,7 @@ def test_api_validation(settings, client):
     ]
 
     with requests_mock.Mocker() as mock:
+        # Mock the email provider endpoints so requests aren't actually sent.
         mock.post(settings.MAILGUN_API_ENDPOINT, status_code=200, text=str(settings.MAIL_MAILGUN))
         mock.post(settings.SENDGRID_API_ENDPOINT, status_code=200, text=str(settings.MAIL_SENDGRID))
 
