@@ -27,10 +27,10 @@ MAIL_SENDGRID = 2
 
 MAIL_ACTIVE = os.environ.get("MAIL_ACTIVE", MAIL_SENDGRID)
 
-SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "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")
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY", "TEST_API_KEY")
 SENDGRID_API_ENDPOINT = "https://api.sendgrid.com/v3/mail/send"
 
-MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "key-8288688d4509d0cc66b7982523322edb")
+MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "TEST_API_KEY")
 MAILGUN_API_ENDPOINT = "https://api.mailgun.net/v3/prbounty.co/messages"
 
 # SECURITY WARNING: don't run with debug turned on in production!
