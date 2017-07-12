@@ -19,15 +19,21 @@ from main.mail_utils import MailSender
 def email_request(request):
     form = EmailForm(request.POST)
 
-    mail_success = False
     status_code = 400
+    response_data = {"success": False}
     if form.is_valid():
         sender = MailSender()
-        mail_success = sender.send_mail_request(form.cleaned_data)
-        if mail_success:
+        mail_response = sender.send_mail_request(
+            form.cleaned_data,
+            mail_service=int(form.cleaned_data['mail_client']) if form.cleaned_data.get('mail_client') else None
+        )
+        if mail_response.ok:
+            response_data["success"] = True
             status_code = 200
 
-    return JsonResponse({"success": mail_success}, status=status_code)
+        response_data["message"] = mail_response.content
+
+    return JsonResponse(response_data, status=status_code)
 
 def index(request):
     response_code = -1
@@ -36,9 +42,9 @@ def index(request):
         form = EmailForm(request.POST)
         if form.is_valid():
             sender = MailSender()
-            mail_success = sender.send_mail_request(
+            mail_response = sender.send_mail_request(
                 form.cleaned_data, mail_service=int(form.cleaned_data['mail_client']))
-            if mail_success:
+            if mail_response.ok:
                 mail_sent_to = "{} ({})".format(form.cleaned_data['to_name'], form.cleaned_data['to_email'])
                 form = EmailForm()
     else:

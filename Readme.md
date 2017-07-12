@@ -37,6 +37,10 @@ commands:
 You should then be able to access the service by making a post request to `127.0.0.1:8000/email/` with the appropriate 
 data.
 
+### Running The Tests
+We use pytest to test the project before deploying. In order to run the tests, make sure you're in the project driectory 
+and run `pytest --ds=settings`
+
 ## Libraries and Frameworks
 
 ### Django
@@ -45,6 +49,11 @@ extensible. It is primarily used for project structure and URL routing in this e
 
 Django-extensions is a supplementary library that adds some handy utility features to Django. I like using 
 `python manage.py shell_plus` as a convenient way of bringing up a more robust Django terminal.
+
+### Pytest
+Pytest is used to test the project. It also uses an addon, pytest-django, with some helpers specific to Django.
+The tests can be found in `main/main_test.py` which tests the endpoint with various parameters and expected results on
+both services.
 
 ### Requests
 Requests is a very popular Python library for making HTTP requests. It is very extensible and easily handles the Mailgun
@@ -69,7 +78,10 @@ If the user has to sign in before use, I can remove access from any offending us
 3. Depending on usage it may be useful to add the possibility of bulk sending. This would be great for users
 with a high volume of messages. Sendgrid allows up to 1000 recipients on each email.
 
-4. Final note is that emails from Mailgun seem to end up in the Spam folder usually while Sendgrid makes it through.
+4. Mailgun and Sendgrid also offer extensive APIs for feedback and analytics on your emails. It would be interesting to 
+incorporate these into the project.
+
+5. Final note is that emails from Mailgun seem to end up in the Spam folder usually while Sendgrid makes it through.
 This may be because Mailgun has you specify your own domain to send from while Sendgrid uses its own.
 
 

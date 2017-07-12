@@ -6,9 +6,6 @@ from django.conf import settings
 
 class MailSender(object):
 
-    SENDGRID_API_ENDPOINT = "https://api.sendgrid.com/v3/mail/send"
-    MAILGUN_API_ENDPOINT = "https://api.mailgun.net/v3/prbounty.co/messages"
-
     def send_mail_request(self, msg_data, mail_service=None):
         if not mail_service:
             mail_service = settings.MAIL_ACTIVE
@@ -28,12 +25,12 @@ class MailSender(object):
         }
 
         response = requests.post(
-            self.MAILGUN_API_ENDPOINT,
+            settings.MAILGUN_API_ENDPOINT,
             auth=('api', settings.MAILGUN_API_KEY),
             data=formatted_data,
         )
 
-        return response.ok
+        return response
 
 
     def send_sendgrid_request(self, msg_data):
@@ -65,9 +62,9 @@ class MailSender(object):
         }
 
         response = requests.post(
-            self.SENDGRID_API_ENDPOINT,
+            settings.SENDGRID_API_ENDPOINT,
             headers=headers,
             data=json.dumps(formatted_data)
         )
-        return response.ok
+        return response
 
