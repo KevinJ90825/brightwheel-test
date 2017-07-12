@@ -35,6 +35,11 @@ class EmailForm(forms.Form):
                 raise forms.ValidationError("Body must be valid once HTML is parsed out.")
         return body
 
+    def clean_mail_client(self):
+        if self.cleaned_data.get('mail_client'):
+            return int(self.cleaned_data['mail_client'])
+        return None
+
     mail_client = forms.ChoiceField(
         label="Email Service Provider",
         choices=CLIENT_CHOICES,

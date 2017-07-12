@@ -12,12 +12,16 @@ DEFAULT_PAYMENT = 200
 
 def test_api_endpoint(settings, client):
     test_cases = [
+        # The normal use case.
         (200, {'to_name': 'Kevin Johnson', 'to_email': 'kevin.w.johnson825@gmail.com', 'from_name': 'Test User',
                'from_email': 'test@example.com', 'subject': 'Hello!', 'body': 'This is a test!'}),
+        # Normal use case with HTML in the body to parse out.
         (200, {'to_name': 'Kevin Johnson', 'to_email': 'kevin.w.johnson825@gmail.com', 'from_name': 'Test User',
                'from_email': 'test@example.com', 'subject': 'Hello!', 'body': '<h3>This is a test!</h3>'}),
+        # Invalid request because the body is empty once the HTML is parsed out.
         (400, {'to_name': 'Kevin Johnson', 'to_email': 'kevin.w.johnson825@gmail.com', 'from_name': 'Test User',
                'from_email': 'test@example.com', 'subject': 'Hello!', 'body': '<h3></h3>'}),
+        # Invalid request because to_email isn't a valid email format.
         (400, {'to_name': 'Kevin Johnson', 'to_email': 'Kevin Johnson', 'from_name': 'Test User',
                'from_email': 'test@example.com', 'subject': 'Hello!', 'body': 'This is a test!'}),
     ]

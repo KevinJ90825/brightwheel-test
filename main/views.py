@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
 
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
-from django.conf import settings
 
 
 # Create your views here.
@@ -25,7 +24,7 @@ def email_request(request):
         sender = MailSender()
         mail_response = sender.send_mail_request(
             form.cleaned_data,
-            mail_service=int(form.cleaned_data['mail_client']) if form.cleaned_data.get('mail_client') else None
+            mail_service=form.cleaned_data.get('mail_client')
         )
         if mail_response.ok:
             response_data["success"] = True
@@ -43,7 +42,7 @@ def index(request):
         if form.is_valid():
             sender = MailSender()
             mail_response = sender.send_mail_request(
-                form.cleaned_data, mail_service=int(form.cleaned_data['mail_client']))
+                form.cleaned_data, mail_service=form.cleaned_data['mail_client'])
             if mail_response.ok:
                 mail_sent_to = "{} ({})".format(form.cleaned_data['to_name'], form.cleaned_data['to_email'])
                 form = EmailForm()
