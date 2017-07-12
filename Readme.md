@@ -33,6 +33,14 @@ new virtual environment and install the required dependencies.
 2. `workon brightwheel-kj`
 3. `pip install -r requirements.txt`
 
+### Using Production Keys For Local Devlopment
+There are API keys required for Sendgrid and Mailgun. It's unwise to put these keys in the public repository though, so
+I'll send them over when submitting the project. 
+
+You should replace the default values for `SENDGRID_API_KEY` and 
+`MAILGUN_API_ENDPOINT` in the `settings.py` file with the values I provide. Ideally the default local keys would be
+sandbox API keys.
+
 ### Running The Service
 If you'd like to run the project locally, you can open a terminal in the project directory and enter the following 
 commands:
