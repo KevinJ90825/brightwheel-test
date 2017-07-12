@@ -8,12 +8,17 @@ This project uses Python 2.7 and Django to provide an interface to Mailgun and S
 
 The project is hosted on Heroku's free plan which has a constraint where the project will go to "sleep" after no use over 15 
 minutes. This just means that the first time you make a request to the URL, it may take longer to load than usual while
-the project "wakes up". It is recommended to **go to the main site before attempting any manual post requests**.
+the project "wakes up". 
+
+**It is recommended to go to the main site before attempting any manual post requests**.
+
+Note: There is a configuration variable, MAIL_ACTIVE, which can be used to set the default mail service. This is defined
+in Heroku's environmental variables. 
 
 ### Links
 
 * [Project Description](https://d2gn4xht817m0g.cloudfront.net/conversation_message_attachment/i/199260-a264b25209b4ca6a860dd5cc844bd748-original?1499272678)
-* [Main Site](https://brightwheel-test.herokuapp.com/)
+* [Main Site and Form](https://brightwheel-test.herokuapp.com/)
 * [Endpoint](https://brightwheel-test.herokuapp.com/email/) (POST only)
 
 ## Installation
@@ -35,7 +40,7 @@ commands:
 2. `python manage.py run_server`
 
 You should then be able to access the service by making a post request to `127.0.0.1:8000/email/` with the appropriate 
-data.
+data or directly going to `127.0.0.1:8000` for the entry form.
 
 ### Running The Tests
 We use pytest to test the project before deploying. In order to run the tests, make sure you're in the project driectory 

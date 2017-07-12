@@ -7,6 +7,8 @@ from django.conf import settings
 class MailSender(object):
 
     def send_mail_request(self, msg_data, mail_service=None):
+        # Param: msg_data must have keys: from_name, from_email, to_name, to_email, subject, and body.
+        # Param: mail_service should be an integer representing settings.MAIL_MAILGUN or settings.MAIL_SENDGRID
         if not mail_service:
             mail_service = settings.MAIL_ACTIVE
 

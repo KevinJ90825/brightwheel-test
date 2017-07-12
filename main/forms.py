@@ -14,12 +14,16 @@ class HtmlTextField(forms.CharField):
 
 class EmailForm(forms.Form):
 
+    # The form that creates and validates email submissions. The top 3 methods clean the form fields in specific ways,
+    # usually parsing out HTML.
+
     CLIENT_CHOICES = [
         (settings.MAIL_MAILGUN, 'Mailgun'),
         (settings.MAIL_SENDGRID, 'Sendgrid'),
     ]
 
     def clean_subject(self):
+        # Subject is required even once all the HTML is parsed out.
         sbj = self.cleaned_data['subject']
         if sbj:
             sbj = BeautifulSoup(sbj, 'html.parser').get_text()
@@ -28,6 +32,7 @@ class EmailForm(forms.Form):
         return sbj
 
     def clean_body(self):
+        # Body is required even once all the HTML is parsed out.
         body = self.cleaned_data['body']
         if body:
             body = BeautifulSoup(body, 'html.parser').get_text()

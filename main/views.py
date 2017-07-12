@@ -16,6 +16,9 @@ from main.mail_utils import MailSender
 @require_POST
 @csrf_exempt
 def email_request(request):
+    # Options for POST request can be found in the EmailForm model. In addition to the required parameters, there's
+    # an optional parameter, mail_client, which specifies which service to use, otherwise it uses default.
+
     form = EmailForm(request.POST)
 
     status_code = 400
